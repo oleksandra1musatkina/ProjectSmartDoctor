@@ -12,6 +12,7 @@ import { MyDoctorPageComponent } from './my-doctor-page/my-doctor-page.component
 import { MyPatientPageComponent } from './my-patient-page/my-patient-page.component';
 import { PatientWaitingRoomPageComponent } from './patient-waiting-room-page/patient-waiting-room-page.component';
 import { DoctorWaitingRoomPageComponent } from './doctor-waiting-room-page/doctor-waiting-room-page.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DoctorWaitingRoomPageComponent } from './doctor-waiting-room-page/docto
     DoctorWaitingRoomPageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
