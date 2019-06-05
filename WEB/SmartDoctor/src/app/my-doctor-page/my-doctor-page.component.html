@@ -9,12 +9,42 @@
         <div id="error"></div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <!--bootstrap card - karta; today steps high score -->
-          <app-doctor></app-doctor>
+        <div class="col-8">
+          <div class="row" *ngIf="myDoctors.length != 0">
+            <div class="col-6" *ngFor="let doc of myDoctors">
+
+              <app-doctor [doctor]="doc"></app-doctor>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="myDoctors.length == 0">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="col-12">
+
+              <div class="card">
+                <div class="card-header">
+                  Doctors
+                </div>
+                <div class="card-body">
+                  <div class="card-text">
+                    You do not have any doctors.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!--<app-doctor></app-doctor>-->
+
         </div>
-        <div class="col-6">
-          <app-doctor></app-doctor>
+        <div class="col-4">
+          <button class="btn btn-lg btn-primary rounded m-3" (click)="onClick($event)"><span
+            class="fa fa-2x fa-plus"> Add doctor</span></button>
+
+          <app-notification-panel></app-notification-panel>
 
         </div>
 
@@ -25,3 +55,36 @@
     </div>
   </div>
 </main>
+
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Choose doctor</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row" *ngIf="notMyDoctors.length != 0">
+          <div class="col-6" *ngFor="let doctor of notMyDoctors">
+            <p>{{doctor.firstname}}</p>
+            <p>{{doctor.surname}}</p>
+            <p (click)="addDoctor(doctor._id)">{{doctor._id}}</p>
+          </div>
+        </div>
+        <div class="row" *ngIf="notMyDoctors.length == 0">
+          There are no another doctors
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+

@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
+
+body {
+  color: #fff;
+  /*background-image: linear-gradient(to right, #285238, #c3d6ae, #285238);*/
+  background-color: #d9dd92;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #ece4b7;
+  border-color: #e3d26f;
+}
+
+.btn-success:hover {
+  color: #fff;
+  background-color: #ede580;
+  border-color: #0062cc;
+}

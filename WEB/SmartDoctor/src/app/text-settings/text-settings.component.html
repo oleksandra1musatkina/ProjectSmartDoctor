@@ -1,0 +1,35 @@
+<!--<h4 class="mb-3 text-primary">{{name}} </h4>-->
+
+<div class="card">
+
+  <ul class="list-group list-group-flush">
+
+    <div *ngFor="let d of data; let i = index">
+      <li class="list-group-item">
+        <app-display-and-set [display]="true" [name]="d.name" [key]="d.name"></app-display-and-set>
+        <!--<div class="row">-->
+
+          <!--<div class="col-3">-->
+            <!--<label>{{d.name}}</label>-->
+          <!--</div>-->
+          <!--<div class="col-8" *ngIf="!d.editing">-->
+            <!--<h1 class="">{{d.value}}</h1>-->
+          <!--</div>-->
+          <!--<div class="col-8" *ngIf="d.editing ">-->
+
+            <!--<input type="number" [(ngModel)]="d.value">-->
+          <!--</div>-->
+          <!--<div class="col-1" *ngIf="!d.editing">-->
+            <!--<span class="fa fa-2x fa-pencil" (click)="edit(i)"></span>-->
+          <!--</div>-->
+          <!--<div class="col-1" *ngIf="d.editing">-->
+            <!--<span class="fa fa-2x fa-save" (click)="save(i)"></span>-->
+          <!--</div>-->
+        <!--</div>-->
+
+      </li>
+
+    </div>
+  </ul>
+</div>
+<p *ngIf="error" class="error">{{error | json}}</p>

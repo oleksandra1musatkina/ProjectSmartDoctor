@@ -9,24 +9,40 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/patient-home"> <span class="fa fa-home"></span><span>&nbsp;Home</span><span
+        <a class="nav-link" *ngIf="patient" routerLink="/patient-home"> <span
+          class="fa fa-home"></span><span>&nbsp;Home</span><span
+          class="sr-only">(current)</span></a>
+        <a class="nav-link" *ngIf="doctor" routerLink="/doctor-home"> <span
+          class="fa fa-home"></span><span>&nbsp;Home</span><span
           class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/my-doctor"><span
+        <a class="nav-link" *ngIf="patient" routerLink="/my-doctor"><span
           class="fa fa-check"></span><span>&nbsp;My doctors</span></a>
+        <a class="nav-link" *ngIf="doctor" routerLink="/my-patient"><span
+          class="fa fa-check"></span><span>&nbsp;My patients</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/patient-waiting-room"><span class="fa fa-user"></span><span>&nbsp;Waiting room</span></a>
+        <a class="nav-link" *ngIf="patient" routerLink="/patient-waiting-room"><span
+          class="fa fa-user"></span><span>&nbsp;Waiting room</span></a>
+        <a class="nav-link" *ngIf="doctor" routerLink="/doctor-waiting-room"><span
+          class="fa fa-user"></span><span>&nbsp;Waiting room</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/patient-settings"><span
+        <a class="nav-link" *ngIf="patient" routerLink="/patient-settings"><span
+          class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>
+        <a class="nav-link" *ngIf="doctor" routerLink="/doctor-settings"><span
           class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>
       </li>
     </ul>
-    <div class="nav-item">
+    <div class="nav-item text-white" *ngIf="patient">
       {{patient.firstname}} {{patient.surname}}
     </div>
+    <div class="nav-item text-white" *ngIf="doctor">
+      {{doctor.firstname}} {{doctor.surname}}
+    </div>
+    <!--<div class="nav-item text-white" *ngIf="doctor">je to doctor</div>-->
+    <!--<div class="nav-item text-white" *ngIf="doctor">je to doctor</div>-->
     <!--<div class="navbar-brand" *ngIf="loggedIn">{{user.name}}</div>-->
     <!--<img class="navbar-brand" *ngIf="loggedIn" src="{{ user.photoUrl }}">-->
 
@@ -37,31 +53,94 @@
   </div>
 </nav>
 
-<!--<nav *ngIf="patient">-->
-  <!--<a routerLink="/login" routerLinkActive="active">Login</a>-->
-  <!--&nbsp;-->
-  <!--<a routerLink="/my-doctor" routerLinkActive="active">My doctor</a>-->
-  <!--&nbsp;-->
-  <!--<a routerLink="/my-patient" routerLinkActive="active">My patient</a>-->
-  <!--&nbsp;-->
-  <!--<a routerLink="/doctor-home" routerLinkActive="active">Home - doctor</a>-->
-  <!--&nbsp;-->
-  <!--<a routerLink="/patient-home" routerLinkActive="active">Home - Patient</a>-->
-  <!--&nbsp;-->
-  <!--<a routerLink="/doctor-settings" routerLinkActive="active">Settings - Doctor</a>-->
-  <!--&nbsp;-->
-  <!--<a routerLink="/patient-settings" routerLinkActive="active">Settings - Patient</a>-->
-  <!--&nbsp;-->
-  <!--<a routerLink="/doctor-waiting-room" routerLinkActive="active">Waiting room - Doctor</a>-->
-  <!--&nbsp;-->
-  <!--<a routerLink="/patient-waiting-room" routerLinkActive="active">Waiting room - Patient</a>-->
-  <!--&nbsp;-->
-  <!--<p>{{patient.firstname}} {{patient.surname}}</p>-->
-  <!--&nbsp;-->
-  <!--<a class="nav-link text-white" href="#" (click)="logout()"><span-->
-    <!--class="fa fa-sign-out-alt"></span><span>&nbsp;Logout</span></a>-->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary" *ngIf="doctor">
+  <span class="navbar-brand log-cursor">Smart Doctor</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="patient" routerLink="/patient-home"> <span
+          class="fa fa-home"></span><span>&nbsp;Home</span><span
+          class="sr-only">(current)</span></a>
+        <a class="nav-link" *ngIf="doctor" routerLink="/doctor-home"> <span
+          class="fa fa-home"></span><span>&nbsp;Home</span><span
+          class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="patient" routerLink="/my-doctor"><span
+          class="fa fa-check"></span><span>&nbsp;My doctors</span></a>
+        <a class="nav-link" *ngIf="doctor" routerLink="/my-patient"><span
+          class="fa fa-check"></span><span>&nbsp;My patients</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="patient" routerLink="/patient-waiting-room"><span
+          class="fa fa-user"></span><span>&nbsp;Waiting room</span></a>
+        <a class="nav-link" *ngIf="doctor" routerLink="/doctor-waiting-room"><span
+          class="fa fa-user"></span><span>&nbsp;Waiting room</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="patient" routerLink="/patient-settings"><span
+          class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>
+        <a class="nav-link" *ngIf="doctor" routerLink="/doctor-settings"><span
+          class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>
+      </li>
+    </ul>
+    <div class="nav-item text-white" *ngIf="patient">
+      {{patient.firstname}} {{patient.surname}}
+    </div>
+    <div class="nav-item text-white" *ngIf="doctor">
+      {{doctor.firstname}} {{doctor.surname}}
+    </div>
+    <!--<div class="nav-item text-white" *ngIf="doctor">je to doctor</div>-->
+    <!--<div class="nav-item text-white" *ngIf="doctor">je to doctor</div>-->
+    <!--<div class="navbar-brand" *ngIf="loggedIn">{{user.name}}</div>-->
+    <!--<img class="navbar-brand" *ngIf="loggedIn" src="{{ user.photoUrl }}">-->
+
+
+    <a class="nav-link text-white" href="#" (click)="logout()"><span
+      class="fa fa-sign-out-alt"></span><span>&nbsp;Logout</span></a>
+
+  </div>
+</nav>
+
+
+<!--<nav *ngIf="doctor">-->
+<!--<a routerLink="/login" routerLinkActive="active">Login</a>-->
+<!--&nbsp;-->
+<!--<a routerLink="/my-doctor" routerLinkActive="active">My doctor</a>-->
+<!--&nbsp;-->
+<!--<a routerLink="/my-doctor" routerLinkActive="active">My doctor</a>-->
+<!--&nbsp;-->
+<!--<a routerLink="/doctor-home" routerLinkActive="active">Home - doctor</a>-->
+<!--&nbsp;-->
+<!--<a routerLink="/doctor-home" routerLinkActive="active">Home - Patient</a>-->
+<!--&nbsp;-->
+<!--<a routerLink="/doctor-settings" routerLinkActive="active">Settings - Doctor</a>-->
+<!--&nbsp;-->
+<!--<a routerLink="/doctor-settings" routerLinkActive="active">Settings - Patient</a>-->
+<!--&nbsp;-->
+<!--<a routerLink="/doctor-waiting-room" routerLinkActive="active">Waiting room - Doctor</a>-->
+<!--&nbsp;-->
+<!--<a routerLink="/doctor-waiting-room" routerLinkActive="active">Waiting room - Patient</a>-->
+<!--&nbsp;-->
+<!--<p>{{doctor.firstname}} {{doctor.surname}}</p>-->
+<!--&nbsp;-->
+<!--<a class="nav-link text-white" href="#" (click)="logout()"><span-->
+<!--class="fa fa-sign-out-alt"></span><span>&nbsp;Logout</span></a>-->
 <!--</nav>-->
 <!--<div [@routeAnimation]="getAnimationData(routerOutlet)">-->
 <!--<router-outlet #routerOutlet="outlet"></router-outlet>-->
+
+<div>
+  <p>asdsadas
+  </p>
+</div>
+
 <router-outlet></router-outlet>
+<!--</div>-->
+<!--<div class="footer fixed-bottom bg-dark text-center text-white">-->
+<!--Smart Doctor<br> Oleksandra Musatkina &copy; 2019-->
 <!--</div>-->

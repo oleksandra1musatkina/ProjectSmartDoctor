@@ -2,18 +2,139 @@
   <div class="card-header">
     Actual drugs
   </div>
-  <div *ngIf="patient.drugs" class="card-body">
-    <div *ngFor="let drug of patient.drugs">
-      {{drug.name}}
-      <span *ngIf="drug.times">
-        ,
-        <span *ngFor="let time of drug.times">
-          {{time}}
-        </span>
-      </span>
-      <span *ngIf="!drug.times">
-        <button>set times</button>
-      </span>
+  <div class="card-body">
+    <div *ngIf="patient.drugs">
+      <ul class="list-group list-group-flush">
+        <div *ngFor="let drug of patient.drugs">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-lg-1 col-2">
+                <span [ngStyle]="{display: hover==true  ? 'block' : 'none' }" class="fa fa-trash"></span>
+              </div>
+              <div class="col-lg-3 col-10" (click)="removeDrug(drug.name)">
+                <span (mouseover)="hover=true" (mouseleave)="hover=false"> {{drug.name}}</span>
+              </div>
+              <div class="col-lg-5 col-12">
+
+              <span *ngIf="drug.times.length != 0">,<span
+                *ngFor="let time of drug.times">          {{time}}        </span>      </span>
+              </div>
+              <div class="col-lg-3 col-12">
+              <span><button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                            data-target="#exampleModalCenter" (click)="onClick(drug.name)">
+                <span class="fa fa-plus"></span>&nbsp;
+                <span class="fa fa-clock-o"></span>
+              </button></span>
+              </div>
+            </div>
+
+          </li>
+        </div>
+      </ul>
+    </div>
+    <button type="button" class="btn btn-primary float-right rounded" data-toggle="modal"
+            (click)="onClickAddNewDrug()"><span class="fa fa-plus"></span>Add
+    </button>
+  </div>
+</div>
+
+
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
+<!--aria-hidden="true">-->
+<!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--...-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--<button type="button" class="btn btn-primary">Save changes</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add time for drug {{drugName}}:</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            Enter time
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <dl-date-time-picker
+              maxView="hour"
+              minView="minute"
+              startView="hour"
+              minuteStep="5"
+              [(ngModel)]="drugTime"
+            >
+            </dl-date-time-picker>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addTime()">Save</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" [style.display]="showAddDrug1Modal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add new drug</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hideAddNewDrug()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+
+            <h4>Name of drug:</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+
+            <input [(ngModel)]="newDrugName">
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addNewDrug()">
+          Add drug
+        </button>
+      </div>
 
     </div>
   </div>

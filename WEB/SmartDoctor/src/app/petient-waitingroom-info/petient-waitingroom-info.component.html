@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">
+    My ordinal number
+  </div>
+  <!--<img class="card-img-top" src="assets/vseobecna.jpg" alt="Card image cap">-->
+  <div class="card-body text-center" *ngIf="ticket">
+    <p class="card-text">{{ticket.doctordata.firstname}} {{ticket.doctordata.surname}}</p>
+    <h1>{{myNumber}}</h1>
+    <p class="card-text">actual: {{ticket.lastnumber}}</p>
+    <h4>Estimated start in {{minutes}} minutes</h4>
+  </div>
+  <!--<div class="card-footer text-muted">-->
+    <!--<button class="btn btn-primary fa fa-trash float-right"> Cancel</button>-->
+  <!--</div>-->
+</div>

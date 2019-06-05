@@ -17,6 +17,22 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ActualDrugsComponent } from './actual-drugs/actual-drugs.component';
 import { DoctorComponent } from './doctor/doctor.component';
+import { PatientShowNotesComponent } from './patient-show-notes/patient-show-notes.component';
+import { PatientWaitingRoomRequesComponent } from './patient-waiting-room-reques/patient-waiting-room-reques.component';
+import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
+import { TextSettingsComponent } from './text-settings/text-settings.component';
+import { PetientInsurenceComponent } from './petient-insurence/petient-insurence.component';
+import { PetientWaitingroomInfoComponent } from './petient-waitingroom-info/petient-waitingroom-info.component';
+import { LastExaminationsComponent } from './last-examinations/last-examinations.component';
+import { PendingExaminationsComponent } from './pending-examinations/pending-examinations.component';
+import { AskFoOnlineHelpComponent } from './ask-fo-online-help/ask-fo-online-help.component';
+import { SettingsPhotoComponent } from './settings-photo/settings-photo.component';
+import { SettingsOpeningHoursComponent } from './settings-opening-hours/settings-opening-hours.component';
+import { SettingsDoctorInsurencesComponent } from './settings-doctor-insurences/settings-doctor-insurences.component';
+import { DisplayAndSetComponent } from './display-and-set/display-and-set.component';
+import { PatientComponent } from './patient/patient.component';
+import {DlDateTimeDateModule, DlDateTimePickerModule} from 'angular-bootstrap-datetimepicker';
+import { HomeComponent } from './home/home.component';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -33,13 +49,30 @@ import { DoctorComponent } from './doctor/doctor.component';
     PatientWaitingRoomPageComponent,
     DoctorWaitingRoomPageComponent,
     ActualDrugsComponent,
-    DoctorComponent
+    DoctorComponent,
+    PatientShowNotesComponent,
+    PatientWaitingRoomRequesComponent,
+    NotificationPanelComponent,
+    TextSettingsComponent,
+    PetientInsurenceComponent,
+    PetientWaitingroomInfoComponent,
+    LastExaminationsComponent,
+    PendingExaminationsComponent,
+    AskFoOnlineHelpComponent,
+    SettingsPhotoComponent,
+    SettingsOpeningHoursComponent,
+    SettingsDoctorInsurencesComponent,
+    DisplayAndSetComponent,
+    PatientComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DlDateTimeDateModule,
+    DlDateTimePickerModule
     // FontAwesomeModule
   ],
   providers: [],

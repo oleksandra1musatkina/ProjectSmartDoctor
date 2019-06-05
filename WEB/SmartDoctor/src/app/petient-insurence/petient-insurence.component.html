@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+
+  <div class="card w-75" *ngIf="insurance">
+    <img class="card-img-top" src="assets/insurances/{{insurance.imageref}}" alt=" image">
+    <div class="card-body">
+      <p class="card-text text-center">{{insurance.name}}</p>
+    </div>
+    <div class="card-footer text-muted">
+      <button (click)="onClick()" class="btn btn-primary fa fa-pencil float-right"> Edit</button>
+    </div>
+  </div>
+  <div class="card w-75" *ngIf="!insurance">
+    <div class="card-body">
+      <p class="card-text text-center">Please set your insurance</p>
+    </div>
+    <div class="card-footer text-muted">
+      <button (click)="onClick()" class="btn btn-primary fa fa-pencil float-right"> Edit</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Select insurance</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6" *ngFor="let ins of insurances">
+            <div class="card" (click)="setInsurance(ins._id)">
+              <img class="card-img-top" src="assets/insurances/{{ins.imageref}}" alt=" image">
+              <div class="card-body">
+                <p class="card-text text-center">{{ins.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

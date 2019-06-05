@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-3 text-primary">{{name}} </div>
+  <div class="col-8" *ngIf="!editing  && display">
+    <span class="">{{data.data}}</span>
+  </div>
+  <div class="col-8" *ngIf="editing  || !display">
+    <input placeholder="{{data.data}}" [(ngModel)]="inputData">
+  </div>
+  <div class="col-1" *ngIf="!editing && display">
+    <span class="fa fa-2x fa-pencil" (click)="edit()"></span>
+  </div>
+  <div class="col-1" *ngIf="editing || !display">
+    <span class="fa fa-2x fa-save" (click)="save()"></span>
+  </div>
+</div>
+<p *ngIf="error" class="error">{{error | json}}</p>

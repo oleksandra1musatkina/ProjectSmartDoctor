@@ -1,0 +1,26 @@
+<div class="card">
+
+  <div class="card-body">
+    <div class="row">
+
+      <div class="col-12">
+
+        <div (mouseover)="hover=true" (mouseleave)="hover=false">
+          <img class="img-fluid" src="assets/zena.jpg" alt="test">
+          <div class="carousel-caption" [ngStyle]="{display: hover==true  ? 'block' : 'none' }">
+            <div class="text-white bg-dark">
+              Click here to change image
+
+            </div>
+            <!--<h1>Example headline.</h1>-->
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<p *ngIf="error" class="error">{{error | json}}</p>
