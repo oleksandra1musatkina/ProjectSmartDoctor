@@ -3,11 +3,24 @@ import {User} from '../user';
 import {Patient, LoginPageService, Doctor} from './login-page.service';
 import {ActivatedRoute, Router, RouterStateSnapshot} from '@angular/router';
 import {DoctorService} from '../services/doctor.service';
+import {trigger, state, style, transition, animate} from '@angular/animations';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
+  animations: [
+    trigger('flipState', [
+      state('active', style({
+        transform: 'rotateY(179deg)'
+      })),
+      state('inactive', style({
+        transform: 'rotateY(0)'
+      })),
+      transition('active => inactive', animate('500ms ease-out')),
+      transition('inactive => active', animate('500ms ease-in'))
+    ])
+  ]
 })
 export class LoginPageComponent implements OnInit {
 
@@ -19,6 +32,12 @@ export class LoginPageComponent implements OnInit {
   constructor(private loginPageService: LoginPageService, private route: ActivatedRoute,
               private router: Router, private doctorService: DoctorService) {
 
+  }
+
+  flip: string = 'inactive';
+
+  toggleFlip() {
+    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
   }
 
 

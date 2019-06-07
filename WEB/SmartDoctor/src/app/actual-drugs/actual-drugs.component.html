@@ -1,4 +1,4 @@
-<div class="card shadow-lg m-3 h-50">
+<div class="card shadow-lg m-3 w-75 h-25">
   <div class="card-header bg-my-secondary-patent text-white">
     Actual drugs
   </div>
@@ -11,11 +11,11 @@
               <div class="col-lg-2 col-2">
                 <span [ngStyle]="{display: hover==true  ? 'block' : 'none' }" class="fa fa-trash"></span>
               </div>
-              <div class="col-lg-6 col-10" (click)="removeDrug(drug.name)">
+              <div class="col-lg-5 col-10" (click)="removeDrug(drug.name)">
                 <span (mouseover)="hover=true" (mouseleave)="hover=false"> {{drug.name}}</span>
               </div>
 
-              <div class="col-lg-4 col-12">
+              <div class="col-lg-5 col-12">
               <span><button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                             data-target="#exampleModalCenter" (click)="onClick(drug.name)">
                 <span class="fa fa-plus"></span>&nbsp;

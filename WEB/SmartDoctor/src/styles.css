@@ -39,25 +39,26 @@ body {
 
 .btn-success, .btn-success:active, .btn-success:visited {
   background-color: #885053 !important;
-  border-color: #885053;
+  border-color: #885053 !important;
 }
 
 .btn-success:hover {
   background-color: #69353f !important;
-  border-color: #69353f;
+  border-color: #69353f !important;
 }
 
 .btn-primary, .btn-primary:active, .btn-primary:visited {
   background-color: #8184b5 !important;
-  border-color: #8184b5;
+  border-color: #8184b5 !important;
+  /*border-color: #8184b5;*/
 }
 
 .btn-primary:hover {
   background-color: #52489c !important;
-  border-color: #52489c;
+  border-color: #52489c !important;
 }
 
-.card, .btn{
+.card, .btn {
   border-radius: .50rem !important
 }
 
@@ -67,4 +68,20 @@ body {
   text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #d9d9d9, 0 0 30px #d9d9d9, 0 0 40px #d9d9d9;
   /*color: #FFFFFF;*/
   /*background: #232323;*/
+}
+
+.navbar-login {
+  width: 305px;
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
+.navbar-login-session {
+  padding: 10px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.icon-size {
+  font-size: 87px;
 }

@@ -30,34 +30,32 @@
             <a class="nav-link" *ngIf="doctor" routerLink="/doctor-waiting-room"><span
               class="fa fa-user"></span><span>&nbsp;Waiting room</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" *ngIf="patient" routerLink="/patient-settings"><span
-              class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>
-            <a class="nav-link" *ngIf="doctor" routerLink="/doctor-settings"><span
-              class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>
-          </li>
+          <!--<li class="nav-item">-->
+          <!--<a class="nav-link" *ngIf="patient" routerLink="/patient-settings"><span-->
+          <!--class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>-->
+          <!--<a class="nav-link" *ngIf="doctor" routerLink="/doctor-settings"><span-->
+          <!--class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>-->
+          <!--</li>-->
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav  navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="glyphicon glyphicon-user"></span> 
-              <strong>Nombre</strong>
-              <span class="glyphicon glyphicon-chevron-down"></span>
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <span class="fa fa-user"></span> 
+              <strong>{{patient.firstname}}</strong>
+              <!--<span class="fa fa-chevron-down"></span>-->
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-right">
               <li>
                 <div class="navbar-login">
                   <div class="row">
                     <div class="col-lg-4">
-                      <p class="text-center">
-                        <span class="glyphicon glyphicon-user icon-size"></span>
-                      </p>
+                      <img class="img-fluid h-75 ml-3 mt-2" src="assets/zena.jpg" alt="photo">
                     </div>
                     <div class="col-lg-8">
-                      <p class="text-left"><strong>Nombre Apellido</strong></p>
-                      <p class="text-left small">correoElectronico@email.com</p>
+                      <p class="text-left"><strong>{{patient.firstname}} {{patient.surname}}</strong></p>
+                      <p class="text-left small">{{patient.email}}</p>
                       <p class="text-left">
-                        <a href="#" class="btn btn-primary btn-block btn-sm">Actualizar Datos</a>
+                        <a class="btn btn-primary btn-block btn-sm" routerLink="/patient-settings">Settings</a>
                       </p>
                     </div>
                   </div>
@@ -69,7 +67,9 @@
                   <div class="row">
                     <div class="col-lg-12">
                       <p>
-                        <a href="#" class="btn btn-danger btn-block">Cerrar Sesion</a>
+                        <a href="#" (click)="logout()" class="btn btn-primary btn-block"><span
+                          class="fa fa-sign-out "></span>
+                          Logout</a>
                       </p>
                     </div>
                   </div>
@@ -80,20 +80,20 @@
         </ul>
 
 
-        <div class="nav-item text-white" *ngIf="patient">
-          {{patient.firstname}} {{patient.surname}}
-        </div>
-        <div class="nav-item text-white" *ngIf="doctor">
-          {{doctor.firstname}} {{doctor.surname}}
-        </div>
+        <!--<div class="nav-item text-white" *ngIf="patient">-->
+        <!--{{patient.firstname}} {{patient.surname}}-->
+        <!--</div>-->
+        <!--<div class="nav-item text-white" *ngIf="doctor">-->
+        <!--{{doctor.firstname}} {{doctor.surname}}-->
+        <!--</div>-->
         <!--<div class="nav-item text-white" *ngIf="doctor">je to doctor</div>-->
         <!--<div class="nav-item text-white" *ngIf="doctor">je to doctor</div>-->
         <!--<div class="navbar-brand" *ngIf="loggedIn">{{user.name}}</div>-->
         <!--<img class="navbar-brand" *ngIf="loggedIn" src="{{ user.photoUrl }}">-->
 
 
-        <a class="nav-link text-white" href="#" (click)="logout()"><span
-          class="fa fa-sign-out-alt"></span><span>&nbsp;Logout</span></a>
+        <!--<a class="nav-link text-white" href="#" (click)="logout()"><span-->
+        <!--class="fa fa-sign-out-alt"></span><span>&nbsp;Logout</span></a>-->
 
       </div>
     </nav>
@@ -127,31 +127,72 @@
             <a class="nav-link" *ngIf="doctor" routerLink="/doctor-waiting-room"><span
               class="fa fa-user"></span><span>&nbsp;Waiting room</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" *ngIf="patient" routerLink="/patient-settings"><span
-              class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>
-            <a class="nav-link" *ngIf="doctor" routerLink="/doctor-settings"><span
-              class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>
+          <!--<li class="nav-item">-->
+          <!--<a class="nav-link" *ngIf="patient" routerLink="/patient-settings"><span-->
+          <!--class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>-->
+          <!--<a class="nav-link" *ngIf="doctor" routerLink="/doctor-settings"><span-->
+          <!--class="fa fa-wrench"></span><span>&nbsp;Settings</span></a>-->
+          <!--</li>-->
+        </ul>
+
+
+        <ul class="nav  navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <span class="fa fa-user"></span> 
+              <strong>{{doctor.firstname}}</strong>
+              <!--<span class="fa fa-chevron-down"></span>-->
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>
+                <div class="navbar-login">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <img class="img-fluid h-75 ml-3 mt-2" src="assets/doctor.jpg" alt="photo">
+                    </div>
+                    <div class="col-lg-8">
+                      <p class="text-left"><strong>{{doctor.firstname}} {{doctor.surname}}</strong></p>
+                      <p class="text-left small">{{doctor.email}}</p>
+                      <p class="text-left">
+                        <a class="btn btn-success btn-block btn-sm" routerLink="/doctor-settings">Settings</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <div class="navbar-login navbar-login-session">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p>
+                        <a href="#" (click)="logout()" class="btn btn-success btn-block text-white"><span
+                          class="fa fa-sign-out "></span>
+                          Logout</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </li>
         </ul>
 
 
-
-
-        <div class="nav-item text-white" *ngIf="patient">
-          {{patient.firstname}} {{patient.surname}}
-        </div>
-        <div class="nav-item text-white" *ngIf="doctor">
-          {{doctor.firstname}} {{doctor.surname}}
-        </div>
+        <!--<div class="nav-item text-white" *ngIf="patient">-->
+        <!--{{patient.firstname}} {{patient.surname}}-->
+        <!--</div>-->
+        <!--<div class="nav-item text-white" *ngIf="doctor">-->
+        <!--{{doctor.firstname}} {{doctor.surname}}-->
+        <!--</div>-->
         <!--<div class="nav-item text-white" *ngIf="doctor">je to doctor</div>-->
         <!--<div class="nav-item text-white" *ngIf="doctor">je to doctor</div>-->
         <!--<div class="navbar-brand" *ngIf="loggedIn">{{user.name}}</div>-->
         <!--<img class="navbar-brand" *ngIf="loggedIn" src="{{ user.photoUrl }}">-->
 
 
-        <a class="nav-link text-white" href="#" (click)="logout()"><span
-          class="fa fa-sign-out-alt"></span><span>&nbsp;Logout</span></a>
+        <!--<a class="nav-link text-white" href="#" (click)="logout()"><span-->
+        <!--class="fa fa-sign-out-alt"></span><span>&nbsp;Logout</span></a>-->
 
       </div>
     </nav>

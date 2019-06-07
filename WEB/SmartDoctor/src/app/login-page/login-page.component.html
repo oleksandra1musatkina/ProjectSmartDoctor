@@ -2,6 +2,17 @@
 <br>
 <br>
 <br>
+
+
+<div class="tp-wrapper">
+  <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+    <div class="tp-box__side tp-box__front">Front
+    </div>
+    <div class="tp-box__side tp-box__back">Back
+    </div>
+  </div>
+</div>
+
 <!--obsah stranky-->
 <div class="d-none d-lg-block">
   <h1 class="text-center">Smart Doctor</h1>
