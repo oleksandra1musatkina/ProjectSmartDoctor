@@ -19,7 +19,7 @@ export class MyDoctorPageComponent implements OnInit {
   constructor(private doctorService: DoctorService, private loginPageService: LoginPageService) {
     this.doctorService.messaging.subscribe({
       next: (event: string) => {
-        if (event == 'doctor-remove')
+        if (event == 'doctor-remove' || event == 'doctor-range-changed')
           this.refreshDoctors();
       }
     });

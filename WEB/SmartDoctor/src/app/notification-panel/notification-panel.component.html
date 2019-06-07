@@ -1,8 +1,9 @@
-<div class="card">
-  <div class="card-header">
+<div class="card shadow-lg m-3 h-50">
+  <div
+    [ngClass]="(isPatient)?'card-header bg-my-secondary-patent text-white':'card-header bg-my-secondary-doctor text-white'">
     Notifications
   </div>
-  <div class="card-body">
+  <div class="card-body overflow-auto">
     <ul class="list-unstyled" *ngFor="let noti of notifications">
       <li class="media" (click)="onClick(noti)">
         <!--<img src="..." class="mr-3" alt="...">-->
@@ -46,10 +47,15 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary float-left" data-dismiss="modal"
+        <button type="button"
+                [ngClass]="(isPatient)?'btn btn-primary float-left':'btn btn-success float-left'"
+                data-dismiss="modal"
                 (click)="decline(modalNotification)">Decline
         </button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="accept(modalNotification)">
+        <button type="button"
+v                [ngClass]="(isPatient)?'btn btn-primary':'btn btn-success'"
+
+                data-dismiss="modal" (click)="accept(modalNotification)">
           Accept
         </button>
       </div>
@@ -77,7 +83,9 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary float-left" data-dismiss="modal"
+        <button type="button"
+                [ngClass]="(isPatient)?'btn btn-primary float-left':'btn btn-success float-left'"
+                data-dismiss="modal"
                 (click)="dismisNotification(modalNotification._id)">Dismiss
           notification
         </button>

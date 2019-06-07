@@ -13,6 +13,7 @@ export class NotificationPanelComponent implements OnInit {
   showModal: boolean = false;
 
   modalNotification: {} = null;
+  isPatient: boolean = false;
 
 
   constructor(private doctorService: DoctorService) {
@@ -170,6 +171,7 @@ export class NotificationPanelComponent implements OnInit {
 
   ngOnInit() {
     this.getNotifications();
+    this.isPatient = this.doctorService.isPatient();
   }
 
 }

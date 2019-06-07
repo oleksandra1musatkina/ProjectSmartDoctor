@@ -428,6 +428,17 @@ export class DoctorService {
     return ticketObservable;
   }
 
+  addDoctorRationgObservable(doctorId: string, ratingNumber: number): Observable<string> {
+    let patient: Patient = this.getSavedPatient();
+    const ticketObservable = this.http.post<string>(this.url + 'adddoctorrating', {
+      email: patient.email,
+      password: patient.password,
+      doctor: doctorId,
+      rating: {patient: patient._id, rate: ratingNumber}
+    });
+    return ticketObservable;
+  }
+
   createNotification(oldNotification: {}, status: string) {
     let newNotification = {};
     newNotification['type'] = 'info';

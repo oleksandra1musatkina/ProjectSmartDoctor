@@ -39,6 +39,8 @@ export class DoctorComponent implements OnInit {
   rateFour: boolean = false;
   rateFive: boolean = false;
 
+  wasRated: boolean = false;
+
   constructor(private doctorService: DoctorService, private loginPageService: LoginPageService) {
   };
 
@@ -83,7 +85,10 @@ export class DoctorComponent implements OnInit {
       this.threeStarsPercentage = this.threeStars / p;
       this.fourStarsPercentage = this.fourStars / p;
       this.fiveStarsPercentage = this.fiveStars / p;
-      this.score = this.points / this.numberOfRatins;
+      if (this.numberOfRatins > 0) {
+        this.score = this.points / this.numberOfRatins;
+      }
+      this.setIfRated();
     }
   }
 
@@ -109,6 +114,17 @@ export class DoctorComponent implements OnInit {
     this.hide();
   }
 
+  addDoctorRating(doctorId, ratingNumber) {
+    this.doctorService.addDoctorRationgObservable(doctorId, ratingNumber).subscribe(
+      (data: string) => {
+        console.log(data);
+        this.doctorService.sendMessage('doctor-range-changed');
+      }, // success path
+      error => console.log(error) // error path
+    );
+    this.hide();
+  }
+
   onAddRequestClick() {
     // this.getNotMyPatients();
     this.eventtype = '';
@@ -122,6 +138,17 @@ export class DoctorComponent implements OnInit {
   hideAddRquest() {
     this.showAddRequestModal = false;
   }
+
+  setIfRated() {
+    let patient = this.doctorService.getSavedPatient();
+    let rating: {}[] = this.doctor.rating;
+    for (let ratingElement of rating) {
+      if (ratingElement['patient'] == patient._id) {
+        this.wasRated = true;
+      }
+    }
+  }
+
 
   confirmAddRequest(doctorId) {
     console.log('z datepickera' + this.date);

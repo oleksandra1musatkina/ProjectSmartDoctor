@@ -75,7 +75,9 @@ export class PatientComponent implements OnInit {
       this.threeStarsPercentage = this.threeStars / p;
       this.fourStarsPercentage = this.fourStars / p;
       this.fiveStarsPercentage = this.fiveStars / p;
-      this.score = this.points / this.numberOfRatins;
+      if (this.numberOfRatins > 0) {
+        this.score = this.points / this.numberOfRatins;
+      }
     }
   }
 

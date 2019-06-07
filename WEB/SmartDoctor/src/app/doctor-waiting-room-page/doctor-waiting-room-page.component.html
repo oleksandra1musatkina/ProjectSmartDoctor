@@ -8,28 +8,28 @@
       <div class="row">
         <div id="error"></div>
       </div>
-      <div class="row">
+      <div class="row h-50">
         <div class="col-4">
-          <div class="card" *ngIf="ticket">
-            <div class="card-header">
+          <div class="card h-100" *ngIf="ticket">
+            <div class="card-header bg-my-secondary-doctor text-white">
               Operate tickets
             </div>
             <!--<img class="card-img-top" src="assets/vseobecna.jpg" alt="Card image cap">-->
             <div class="card-body text-center" *ngIf="ticket.status=='open'">
               <p class="card-text">Your ticket system is now running. You can close it any time</p>
-              <button class="btn btn-primary" (click)="closeTicketSystem()"> Close</button>
+              <button class="btn btn-success" (click)="closeTicketSystem()"> Close</button>
             </div>
             <div class="card-body text-center" *ngIf="ticket.status=='closed'">
               <p class="card-text">Your ticket system is now closed. You can open it any time</p>
-              <button class="btn btn-primary" (click)="openTicketSystem()"> Open</button>
+              <button class="btn btn-success" (click)="openTicketSystem()"> Open</button>
             </div>
           </div>
 
 
         </div>
         <div class="col-4">
-          <div class="card" *ngIf="ticket">
-            <div class="card-header">
+          <div class="card h-100" *ngIf="ticket">
+            <div class="card-header bg-my-secondary-doctor text-white">
               Ticket status
             </div>
             <!--<img class="card-img-top" src="assets/vseobecna.jpg" alt="Card image cap">-->
@@ -49,14 +49,14 @@
 
         </div>
         <div class="col-4">
-          <div class="card" *ngIf="ticket">
-            <div class="card-header">
+          <div class="card h-100" *ngIf="ticket">
+            <div class="card-header bg-my-secondary-doctor text-white">
               Manage patients
             </div>
             <!--<img class="card-img-top" src="assets/vseobecna.jpg" alt="Card image cap">-->
             <div class="card-body text-center" *ngIf="ticket.status=='open'">
               <p class="card-text">Your ticket system is now running. You can call next patient</p>
-              <button class="btn btn-primary" (click)="callNextTicketSystem()"> Call next</button>
+              <button class="btn btn-success" (click)="callNextTicketSystem()"> Call next</button>
               <p class="card-text">{{callNextError}}</p>
 
             </div>

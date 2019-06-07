@@ -1,6 +1,6 @@
 <p *ngIf="error" class="error">{{error | json}}</p>
 
-<div class="card">
+<div class="card shadow-lg m-3">
   <img class="card-img-top" src="assets/doctor.jpg" alt="Card image cap">
   <div class="card-body">
     <div class="text-center">
@@ -100,11 +100,11 @@
         <div class="col-xs-12 col-md-6 text-center">
           <h1 class="rating-num"> {{score}}</h1>
           <div class="rating">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star-o"></span>
+            <span [ngClass]="(score > 0 )?'fa fa-star':'fa fa-star-o'"></span>
+            <span [ngClass]="(score > 1 )?'fa fa-star':'fa fa-star-o'"></span>
+            <span [ngClass]="(score > 2 )?'fa fa-star':'fa fa-star-o'"></span>
+            <span [ngClass]="(score > 3 )?'fa fa-star':'fa fa-star-o'"></span>
+            <span [ngClass]="(score > 4 )?'fa fa-star':'fa fa-star-o'"></span>
           </div>
           <div>
             <span class="glyphicon glyphicon-user"></span>{{numberOfRatins}} total
@@ -177,16 +177,20 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!wasRated">
       <div class="col-12 text-center">
         Rate now:
-        <span class="text-center">
-      <span (mouseover)="oneStars=true" (mouseleave)="oneStars=false"
-            [ngClass]="{'fa-star': oneStars==true,'fa-star-o': oneStars==true}"></span>
-      <span (mouseover)="twoStars=true" (mouseleave)="twoStars=false" class="fa fa-star-o"></span>
-      <span (mouseover)="threeStars=true" (mouseleave)="threeStars=false" class="fa fa-star-o"></span>
-      <span (mouseover)="fourStars=true" (mouseleave)="fourStars=false" class="fa fa-star-o"></span>
-      <span (mouseover)="fiveStars=true" (mouseleave)="fiveStars=false" class="fa fa-star-o"></span>
+        <span class="text-center ">
+      <span (mouseover)="rateOne=true" (mouseleave)="rateOne=false" (click)="addDoctorRating(doctor._id, 1)"
+            [ngClass]="(rateOne==true || rateTwo==true || rateThree==true || rateFour==true || rateFive==true)?'fa fa-2x fa-star':'fa fa-2x fa-star-o'"></span>
+      <span (mouseover)="rateTwo=true" (mouseleave)="rateTwo=false" (click)="addDoctorRating(doctor._id, 2)"
+            [ngClass]="(rateTwo==true || rateThree==true || rateFour==true || rateFive==true)?'fa fa-2x fa-star':'fa fa-2x fa-star-o'"></span>
+      <span (mouseover)="rateThree=true" (mouseleave)="rateThree=false" (click)="addDoctorRating(doctor._id, 3)"
+            [ngClass]="(rateThree==true || rateFour==true || rateFive==true)?'fa fa-2x fa-star':'fa fa-2x fa-star-o'"></span>
+      <span (mouseover)="rateFour=true" (mouseleave)="rateFour=false" (click)="addDoctorRating(doctor._id, 4)"
+            [ngClass]="(rateFour==true || rateFive==true)?'fa fa-2x fa-star':'fa fa-2x fa-star-o'"></span>
+      <span (mouseover)="rateFive=true" (mouseleave)="rateFive=false" (click)="addDoctorRating(doctor._id, 5)"
+            [ngClass]="(rateFive==true)?'fa fa-2x fa-star':'fa fa-2x fa-star-o'"></span>
     </span>
       </div>
     </div>

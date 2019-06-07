@@ -3,7 +3,8 @@
 body {
   color: #fff;
   /*background-image: linear-gradient(to right, #285238, #c3d6ae, #285238);*/
-  background-color: #d9dd92;
+  /*background-color: #d9dd92;*/
+  background-color: white;
 }
 
 .btn-success {
@@ -16,4 +17,54 @@ body {
   color: #fff;
   background-color: #ede580;
   border-color: #0062cc;
+}
+
+.bg-my-secondary-patent {
+  background-color: #8184b5 !important;
+  /*background-color: #885053 !important;*/
+}
+
+.bg-my-primary-patient {
+  background-color: #52489c !important;
+  /*background-color: #69353f !important;*/
+}
+
+.bg-my-secondary-doctor {
+  background-color: #885053 !important;
+}
+
+.bg-my-primary-doctor {
+  background-color: #69353f !important;
+}
+
+.btn-success, .btn-success:active, .btn-success:visited {
+  background-color: #885053 !important;
+  border-color: #885053;
+}
+
+.btn-success:hover {
+  background-color: #69353f !important;
+  border-color: #69353f;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+  background-color: #8184b5 !important;
+  border-color: #8184b5;
+}
+
+.btn-primary:hover {
+  background-color: #52489c !important;
+  border-color: #52489c;
+}
+
+.card, .btn{
+  border-radius: .50rem !important
+}
+
+.nadpis {
+  /*color: #FFFFFF;*/
+  /*background: #232323;*/
+  text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #d9d9d9, 0 0 30px #d9d9d9, 0 0 40px #d9d9d9;
+  /*color: #FFFFFF;*/
+  /*background: #232323;*/
 }
