@@ -456,4 +456,52 @@ export class DoctorService {
     return newNotification;
   }
 
+  registerPatientObservable(firstname: string, surname: string, email: string, password: string, address: string, city: string, state: string): Observable<{}> {
+    let patient = {
+      firstname: firstname,
+      surname: surname,
+      birdthdate: '00.00.0000',
+      password: password,
+      email: email,
+      address: address,
+      city: city,
+      state: state,
+      sex: '---',
+      insuranceNumber: '',
+      alergies: [],
+      drugs: [{name: 'aspirin', times: ['7:30', '10:50']}],
+      badHabits: [],
+      doctors: [],
+      rating: [],
+      notes: []
+    };
+
+    const registerObservable = this.http.post<string>(this.url + 'registerpatient', {
+      patient: patient
+    });
+    return registerObservable;
+  }
+
+  registerDoctorObservable(firstname: string, surname: string, email: string, password: string, address: string, city: string, state: string): Observable<{}> {
+
+    let doctor = {
+      firstname: firstname,
+      surname: surname,
+      birdthdate: '00.00.0000',
+      password: password,
+      email: email,
+      address: address,
+      city: city,
+      state: state,
+      patients: [],
+      insurances: []
+    };
+
+    const registerObservable = this.http.post<string>(this.url + 'registerdoctor', {
+      doctor: doctor
+    });
+    return registerObservable;
+  }
+
+
 }
