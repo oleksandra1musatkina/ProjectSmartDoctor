@@ -22,6 +22,7 @@ export interface Patient {
   rating: string[];
   notes: string[];
   examintaions: Examination[];
+  image: string;
 }
 
 export interface Examination {
@@ -46,6 +47,7 @@ export interface Doctor {
   rating: {}[];
   maxpatients: string;
   estimatedpatienttime: string;
+  image: string;
 }
 
 
@@ -62,7 +64,8 @@ export class LoginPageService {
 
   // urlBase = 'http://itsovy.sk:1203/login';
   // url = 'http://localhost:3330/login';
-  url = 'http://localhost:3330/';
+  url = 'http://itsovy.sk:3309/';
+  // url = 'http://localhost:3309/';
 
   constructor(private http: HttpClient) {
   }

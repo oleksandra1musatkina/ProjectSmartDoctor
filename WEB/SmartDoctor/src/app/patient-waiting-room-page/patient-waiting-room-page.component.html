@@ -1,59 +1,47 @@
-<main role="main" class="container">
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="content">
-    <div class="animated fadeIn">
-      <div class="row">
-        <div id="error"></div>
+<div class="row">
+  <div id="error"></div>
+</div>
+<div class="row">
+  <div class="col-8">
+    <div class="row" *ngIf="myTickets.length != 0">
+      <div class="col-6" *ngFor="let ticket of myTickets">
+        <app-petient-waitingroom-info [ticket]="ticket"></app-petient-waitingroom-info>
       </div>
-      <div class="row">
-        <div class="col-8">
-          <div class="row" *ngIf="myTickets.length != 0">
-            <div class="col-6" *ngFor="let ticket of myTickets">
-              <app-petient-waitingroom-info [ticket]="ticket"></app-petient-waitingroom-info>
-            </div>
-
-          </div>
-          <div class="row" *ngIf="myTickets.length == 0">
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="col-12">
-
-              <div class="card">
-                <div class="card-header bg-my-secondary-patent">
-                  Tickets
-                </div>
-                <div class="card-body">
-                  <div class="card-text">
-                    You do not have any tickets.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!--<app-doctor></app-doctor>-->
-
-        </div>
-        <div class="col-4">
-          <button class="btn btn-lg btn-primary rounded m-3" (click)="onClick()"><span
-            class="fa fa-2x fa-plus"> Request ticket</span></button>
-
-          <!--<app-notification-panel></app-notification-panel>-->
-
-        </div>
-
-
-      </div>
-
 
     </div>
+    <div class="row" *ngIf="myTickets.length == 0">
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="col-12">
+
+        <div class="card">
+          <div class="card-header bg-my-secondary-patent text-white">
+            Tickets
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              You do not have any tickets.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--<app-doctor></app-doctor>-->
+
   </div>
-</main>
+  <div class="col-4">
+    <button class="btn btn-lg btn-primary rounded w-100" (click)="onClick()"><span
+      class="fa fa-2x fa-plus"> Request ticket</span></button>
+
+    <!--<app-notification-panel></app-notification-panel>-->
+
+  </div>
+
+
+</div>
 
 
 <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">

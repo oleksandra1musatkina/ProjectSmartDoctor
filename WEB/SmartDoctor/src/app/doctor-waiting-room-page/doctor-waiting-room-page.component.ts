@@ -108,6 +108,7 @@ export class DoctorWaitingRoomPageComponent implements OnInit {
             this.doctorService.callNextDoctorTicketSystemObservable(doctor._id, this.ticket.lastnumber + 1)
               .subscribe(
                 (data: string) => {
+                  this.getMyTicket();
                   console.log(data);
                 }, // success path
                 error => {

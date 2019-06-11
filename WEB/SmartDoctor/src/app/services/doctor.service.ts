@@ -39,11 +39,25 @@ export interface Ticket {
   lastentertime: Date;
 }
 
+export interface BarchartData {
+  data: string[];
+  labels: string[];
+}
+
+export interface BarchartdataWithLabelJSON {
+  data: string[];
+  label: string;
+  backgroundColor: string;
+  borderColor: string;
+  pointHighlightStroke: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorService {
-  url = 'http://localhost:3330/';
+  url = 'http://itsovy.sk:3309/';
+  // url = 'http://localhost:3309/';
   doctors: Doctor[];
   error: any;
   patient: Patient;
@@ -439,6 +453,22 @@ export class DoctorService {
     return ticketObservable;
   }
 
+  editRecordObservable(patientId: string, examination: {}, recordtext: string, recordid: string): Observable<string> {
+    let body = {patient: patientId, examination: examination, recordtext: recordtext};
+    if (recordid) {
+      body['recordid'] = recordid;
+    }
+
+    const recordObservable = this.http.post<string>(this.url + 'editrecord', body);
+    return recordObservable;
+  }
+
+  getRecordObservable(recordid: string): Observable<{}> {
+
+    const recordObservable = this.http.post<{}>(this.url + 'getrecord', {recordid: recordid});
+    return recordObservable;
+  }
+
   createNotification(oldNotification: {}, status: string) {
     let newNotification = {};
     newNotification['type'] = 'info';
@@ -501,6 +531,64 @@ export class DoctorService {
       doctor: doctor
     });
     return registerObservable;
+  }
+
+  uploadImageObservable(image: File): Observable<{}> {
+
+    let formData = new FormData();
+    formData.append('file', image);
+    const imageObservable = this.http.post<string>(this.url + 'uploadimage', formData);
+    // const imageObservable = null;
+    return imageObservable;
+    // return null;
+  }
+
+//   let formData = new FormData();
+//   formData.append('file', image);
+//   // const imageObservable =
+//   return this.http.post<string>(this.url + 'uploadimage', formData, {
+//   reportProgress: true,
+//   observe: 'events'
+// });
+
+  // uploadImageObservable(image: File): Observable<{}> {
+  //
+  //   let formData = new FormData();
+  //   formData.append('file', image);
+  //   const imageObservable = this.http.post<string>(this.url + 'uploadimage', formData);
+  //   // const imageObservable = null;
+  //   return imageObservable;
+  //   // return null;
+  // }
+
+  setPatientImageName(patinetid: string, imagename: string): Observable<string> {
+    const imageObservable = this.http.post<string>(this.url + 'setpatientimagename', {patientid: patinetid, imagename: imagename});
+    return imageObservable;
+  }
+
+  setDoctorImageName(doctorid: string, imagename: string): Observable<string> {
+    const imageObservable = this.http.post<string>(this.url + 'setdoctorimagename', {doctorid: doctorid, imagename: imagename});
+    return imageObservable;
+  }
+
+  // getBarchartData(apiUrl: string): Observable<BarchartData> {
+  //   const observable = this.http.post<BarchartData>(this.url + apiUrl);
+  //   return observable;
+  //   // return this.http.get('http://samples.openweathermap.org/data/2.5/history/city?q=Warren,OH&appid=b6907d289e10d714a6e88b30761fae22')
+  //   //   .map(result => result);
+  // }
+
+  imageToShow: any;
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
 

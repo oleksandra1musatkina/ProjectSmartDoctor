@@ -1,14 +1,12 @@
-<br>
-<br>
-<br>
-<br>
-
-<div class="card  m-3 rounded shadow-lg w-50">
+<div class="card  rounded shadow-lg w-50">
   <div class="card-header bg-my-secondary-doctor text-white">
     Your visits
   </div>
   <div class="card-body">
-    <img class="card-img" src="assets/graph.png" alt=" image">
-
+    <!--<img class="card-img" src="assets/graph.png" alt=" image">-->
+    <app-barchart [label]="'Number of patients'" [backgroundColor]="'rgba(123,0,.09)'"
+                  [pointHighlightStroke]="'rgba(193, 0, 0, 0.5)'"
+                  [borderColor]="'rgba(26,179,148,1)'"></app-barchart>
   </div>
+
 </div>

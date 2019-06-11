@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Patient} from '../login-page/login-page.service';
+import {DoctorService} from '../services/doctor.service';
 
 @Component({
   selector: 'app-patient-home-page',
@@ -8,10 +9,13 @@ import {Patient} from '../login-page/login-page.service';
 })
 export class PatientHomePageComponent implements OnInit {
 
-  constructor() {
+  patient: Patient;
+
+  constructor(private doctorService: DoctorService) {
   }
 
   ngOnInit() {
+    this.patient = this.doctorService.getSavedPatient();
   }
 
 }

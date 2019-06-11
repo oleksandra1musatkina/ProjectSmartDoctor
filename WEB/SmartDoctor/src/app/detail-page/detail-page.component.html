@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-4">
+    <app-patient [patient]="patient" *ngIf="isPatient==false"></app-patient>
+    <app-doctor [doctor]="doctor" *ngIf="isPatient==true"></app-doctor>
+  </div>
+
+  <div class="col-4">
+    <app-last-examinations [patient]="patient" [doctorForExaminations]="doctor"></app-last-examinations>
+  </div>
+  <div class="col-4">
+    <app-pending-examinations [patient]="patient" [doctorForExaminations]="doctor"></app-pending-examinations>
+  </div>
+</div>
+
+<!--<h1>State in details component</h1>-->
+<!--<div *ngIf="patient">-->
+<!--<pre>{{ patient  | json }}</pre>-->
+
+<!--</div>-->

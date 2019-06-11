@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Doctor, LoginPageService} from '../login-page/login-page.service';
 import {DoctorService} from '../services/doctor.service';
 import {Router} from '@angular/router';
+import {DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-doctor',
@@ -15,6 +16,8 @@ export class DoctorComponent implements OnInit {
   @Input() eventtype: string;
   @Input() message: string;
   @Input() date: Date;
+  @Input() showDetails: boolean = false;
+
   showModal: boolean;
   showAddRequestModal: boolean;
 
@@ -41,9 +44,13 @@ export class DoctorComponent implements OnInit {
 
   wasRated: boolean = false;
 
-  constructor(private doctorService: DoctorService, private loginPageService: LoginPageService) {
+  constructor(private doctorService: DoctorService, private loginPageService: LoginPageService, private dataService: DataService, private router: Router) {
   };
 
+  navigateToDetail() {
+    this.dataService.setData(this.doctor);
+    this.router.navigate(['detail']);
+  }
 
   ngOnInit() {
     let rating = this.doctor.rating;

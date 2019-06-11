@@ -1,4 +1,4 @@
-<div class="card shadow-lg m-3 h-50">
+<div class="card shadow-lg mt-3 h-50">
   <div
     [ngClass]="(isPatient)?'card-header bg-my-secondary-patent text-white':'card-header bg-my-secondary-doctor text-white'">
     Notifications
@@ -11,8 +11,8 @@
         <div class="media-body">
           <h5 class="mt-0 mb-1">{{noti.heading}}</h5>
 
-          <div *ngIf="noti.eventdate">date: {{noti.eventdate}}</div>
-          <div *ngIf="!noti.eventdate">date: {{noti.dateadded}}</div>
+          <div *ngIf="noti.eventdate">date: {{noti.eventdate | date:'short'}}</div>
+          <div *ngIf="!noti.eventdate">date: {{noti.dateadded | date:'short'}}</div>
           <div *ngIf="noti['userdata']">from: {{noti['userdata'].firstname}} {{noti.userdata.surname}}</div>
           <!--<p>from: {{noti['userdata'].firstname}}-->
           <!--{{noti.userdata.surname}}-->

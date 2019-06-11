@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col">
+
+    <div class="card shadow-lg mt-3">
+      <div
+        [ngClass]="(isPatient)?'card-header bg-my-secondary-patent text-white':'card-header bg-my-secondary-doctor text-white'">
+        <div class="row">
+          <div class="col align-self-end">
+            Zaznam - {{examination.type}}
+          </div>
+          <div class="col align-self-end" *ngIf="!isPatient">
+            <button
+              class="btn btn-success fa fa-sticky-note-o float-right"
+              (click)="onClick()"
+            >
+              Edit record
+            </button>
+          </div>
+          <div class="col align-self-end">
+            <button
+              (click)="generatePdf()"
+              [ngClass]="(isPatient == true )?'btn btn-primary fa fa-file-pdf-o float-right':'btn btn-success fa fa-file-pdf-o float-right'">
+            </button>
+
+          </div>
+        </div>
+      </div>
+      <div class="card-body overflow-auto" id="topdf">
+
+        Zaznam - {{examination.type}} <br> {{examination.date | date:'short'}}<br>
+        <div *ngIf="examination.doctordata">
+          {{examination.doctordata.firstname}} {{examination.doctordata.surname}} - {{examination.doctordata.address}}
+          , {{examination.doctordata.city}}
+
+
+        </div>
+        <hr>
+        <div *ngIf="record">
+          {{record.text}}
+        </div>
+        <div *ngIf="!examination.record">
+          Currently there is no record.
+        </div>
+      </div>
+      <!--<div class="col-1 align-self-end align-top">-->
+      <!--<button-->
+      <!--[ngClass]="(isPatient == true )?'btn btn-primary fa fa-2x fa-sticky-note-o float-right':'btn btn-success fa fa-2x fa-sticky-note-o float-right'"-->
+      <!--(click)="openExaminationDetail(examination)"-->
+      <!--&gt;-->
+      <!--</button>-->
+      <!--<button-->
+      <!--[ngClass]="(isPatient == true )?'btn btn-primary fa fa-2x fa-file-pdf-o float-right':'btn btn-success fa fa-2x fa-file-pdf-o float-right'">-->
+      <!--</button>-->
+
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit record</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <p class="modal-header">Here you can edit record: </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="inputData"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success float-left" data-dismiss="modal" (click)="hide()">Cancel</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveRecord(examination)">
+          Confirm
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

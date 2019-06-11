@@ -53,6 +53,9 @@ export class PatientWaitingRoomPageComponent implements OnInit {
       (data: string) => {
         console.log(data);
         this.refreshDoctors();
+        this.getMyTickets();
+        this.hide();
+
         // this.loginPageService.refreshPatientData();
       },
       error => {
@@ -60,9 +63,9 @@ export class PatientWaitingRoomPageComponent implements OnInit {
         this.error = error.error;
       } // error path
     );
-    if (this.error != null) {
-      this.hide();
-    }
+    // if (this.error != null) {
+    //   this.hide();
+    // }
   }
 
   getMyDoctors() {
@@ -110,6 +113,7 @@ export class PatientWaitingRoomPageComponent implements OnInit {
   }
 
   getMyTickets() {
+    this.myTickets = [];
     this.doctorService.getDoctorsListObservable()
       .subscribe(
         (data: Doctor[]) => {

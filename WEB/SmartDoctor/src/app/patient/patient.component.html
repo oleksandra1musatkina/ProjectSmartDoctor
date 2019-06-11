@@ -1,98 +1,14 @@
 <p *ngIf="error" class="error">{{error | json}}</p>
 
 <div class="card">
-  <img class="card-img-top" src="assets/zena.jpg" alt="Card image cap">
+  <img *ngIf="patient && patient.image" class="card-img-top" src="assets/uploads/{{patient.image}}" height="250"
+       alt="Card image cap">
+  <img *ngIf="!patient || !patient.image" class="card-img-top" src="assets/zena.jpg" alt="Card image cap" height="250">
   <div class="card-body">
     <div class="text-center">
 
       <h5 class="card-title">{{patient.firstname}} {{patient.surname}}</h5>
-      <!--<p class="card-text">Opening hours.</p>-->
-      <!--<table class="align-middle">-->
-      <!--<tr>-->
-      <!--<td>-->
-      <!--Mon-->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.mon.open">{{patient.opening.mon.open}}</td>-->
-      <!--<td *ngIf="!patient.opening.mon.open">&#45;&#45;:&#45;&#45;</td>-->
-      <!--<td>-->
-      <!-- - -->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.mon.close">{{patient.opening.mon.close}}</td>-->
-      <!--<td *ngIf="!patient.opening.mon.close">&#45;&#45;:&#45;&#45;</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td>-->
-      <!--Tue-->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.tue.open">{{patient.opening.tue.open}}</td>-->
-      <!--<td *ngIf="!patient.opening.tue.open">&#45;&#45;:&#45;&#45;</td>-->
-      <!--<td>-->
-      <!-- - -->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.tue.close">{{patient.opening.tue.close}}</td>-->
-      <!--<td *ngIf="!patient.opening.tue.close">&#45;&#45;:&#45;&#45;</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td>-->
-      <!--Wed-->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.wed.open">{{patient.opening.wed.open}}</td>-->
-      <!--<td *ngIf="!patient.opening.wed.open">&#45;&#45;:&#45;&#45;</td>-->
-      <!--<td>-->
-      <!-- - -->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.wed.close">{{patient.opening.wed.close}}</td>-->
-      <!--<td *ngIf="!patient.opening.wed.close">&#45;&#45;:&#45;&#45;</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td>-->
-      <!--Thu-->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.thu.open">{{patient.opening.thu.open}}</td>-->
-      <!--<td *ngIf="!patient.opening.thu.open">&#45;&#45;:&#45;&#45;</td>-->
-      <!--<td>-->
-      <!-- - -->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.thu.close">{{patient.opening.thu.close}}</td>-->
-      <!--<td *ngIf="!patient.opening.thu.close">&#45;&#45;:&#45;&#45;</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td>-->
-      <!--Fri-->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.fri.open">{{patient.opening.fri.open}}</td>-->
-      <!--<td *ngIf="!patient.opening.fri.open">&#45;&#45;:&#45;&#45;</td>-->
-      <!--<td>-->
-      <!-- - -->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.fri.close">{{patient.opening.fri.close}}</td>-->
-      <!--<td *ngIf="!patient.opening.fri.close">&#45;&#45;:&#45;&#45;</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td>-->
-      <!--Sat-->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.sat.open">{{patient.opening.sat.open}}</td>-->
-      <!--<td *ngIf="!patient.opening.sat.open">&#45;&#45;:&#45;&#45;</td>-->
-      <!--<td>-->
-      <!-- - -->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.sat.close">{{patient.opening.sat.close}}</td>-->
-      <!--<td *ngIf="!patient.opening.sat.close">&#45;&#45;:&#45;&#45;</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td>-->
-      <!--Sun-->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.sun.open">{{patient.opening.sun.open}}</td>-->
-      <!--<td *ngIf="!patient.opening.sun.open">&#45;&#45;:&#45;&#45;</td>-->
-      <!--<td>-->
-      <!-- - -->
-      <!--</td>-->
-      <!--<td *ngIf="patient.opening.sun.close">{{patient.opening.sun.close}}</td>-->
-      <!--<td *ngIf="!patient.opening.sun.close">&#45;&#45;:&#45;&#45;</td>-->
-      <!--</tr>-->
-      <!--</table>-->
+
     </div>
 
     <div class="well well-sm">
@@ -107,7 +23,7 @@
             <span class="fa fa-star-o"></span>
           </div>
           <div>
-            <span class="glyphicon glyphicon-user"></span>{{numberOfRatins}} total
+            <span class="fa fa-user"></span>{{numberOfRatins}} total
           </div>
         </div>
         <div class="col-xs-12 col-md-6">
@@ -180,9 +96,21 @@
   </div>
   <div class="card-footer">
     <small class="text-muted">
-      <button class="btn btn-success" (click)="onAddRequestClick()">Request examination</button>
-      <button class="btn btn-success fa fa-2x fa-trash float-right" (click)="onClick($event)"></button>
+      <div class="row">
+        <div class="col-auto align-self-start">
+          <button class="btn btn-success" (click)="onAddRequestClick()">Examination</button>
+
+        </div>
+        <div class="col-auto align-self-center" *ngIf="showDetails">
+          <button class="btn btn-success fa fa-2x fa-info" (click)="navigateToDetail()"></button>
+        </div>
+        <div class="col align-self-end">
+          <button class="btn btn-success fa fa-2x fa-trash float-right" (click)="onClick($event)"></button>
+        </div>
+      </div>
+
     </small>
+
   </div>
 </div>
 

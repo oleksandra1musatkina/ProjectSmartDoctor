@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Doctor, Examination, Patient} from '../login-page/login-page.service';
 import {DoctorService} from '../services/doctor.service';
 
@@ -9,15 +9,18 @@ import {DoctorService} from '../services/doctor.service';
 })
 export class PendingExaminationsComponent implements OnInit {
   showModal: boolean;
-  patient: Patient;
+  @Input() patient: Patient;
+  @Input() doctorForExaminations: Doctor = null;
+  isPatient: boolean = false;
   examinations;
 
   constructor(private doctorService: DoctorService) {
+    this.isPatient = this.doctorService.isPatient();
+
   }
 
   ngOnInit() {
-    this.patient = JSON.parse(localStorage.getItem('user'));
-    this.getPendingExaminations()
+    this.getPendingExaminations();
 
   }
 
@@ -31,41 +34,57 @@ export class PendingExaminationsComponent implements OnInit {
   }
 
   getPendingExaminations() {
-    this.doctorService.getDoctorsListObservable()
-      .subscribe(
-        (data: Doctor[]) => {
-          let doctors = data;
-          let examinations: Examination[] = this.doctorService.getExaminations();
-          let lastExaminations: Examination[] = [];
-          for (let examination of examinations) {
-            let date = new Date(examination.date);
-            let now = new Date();
-            if (date.getTime() >= now.getTime()) {
-              lastExaminations.push(examination);
-              console.log('patients: ' + doctors);
-              for (let doctor of doctors) {
-                console.log('did: ' + doctor._id + '; did2: ' + examination.doctor);
-                if (doctor._id == examination.doctor) {
-                  examination['doctordata'] = doctor;
-                }
-              }
+    let examinations: Examination[] = this.patient.examintaions;
+    // console.log('pocet vysetreni: ' + examinations.length);
+    let lastExaminations: Examination[] = [];
 
-            }
+
+    if (this.doctorForExaminations) {
+      // console.log('je zadany doktor');
+
+      for (let examination of examinations) {
+        let date = new Date(examination.date);
+        let now = new Date();
+        if (date.getTime() < now.getTime()) {
+          // console.log('doktor vysetrenia: ' + examination.doctor);
+          // console.log('ma byt doktor: ' + this.doctorForExaminations._id);
+          if (examination.doctor == this.doctorForExaminations._id) {
+            examination['doctordata'] = this.doctorForExaminations;
+
+            lastExaminations.push(examination);
           }
-          this.examinations = lastExaminations;
+        }
+      }
+    } else {
+      // console.log('nie je zadany doktor');
+      this.doctorService.getDoctorsListObservable()
+        .subscribe(
+          (data: Doctor[]) => {
+            let doctors = data;
+            for (let examination of examinations) {
+              let date = new Date(examination.date);
+              let now = new Date();
+              if (date.getTime() >= now.getTime()) {
+                lastExaminations.push(examination);
+                // console.log('patients: ' + doctors);
+                for (let doctor of doctors) {
+                  // console.log('did: ' + doctor._id + '; did2: ' + examination.doctor);
+                  if (doctor._id == examination.doctor) {
+                    examination['doctordata'] = doctor;
+                  }
+                }
 
-          // let doctors1 = this.doctor.patients;
-          // for (let d of data) {
-          //   if (this.doctor.patients.includes(d._id)) {
-          //     this.myPatients.push(d);
-          //   }
-          //
-          // }
-        }, // success path
-        error => {
-          console.log('error: ' + error.toString());
-        }// error path
-      );
+              }
+            }
+
+          },
+          error => {
+            console.log('error: ' + error.toString());
+          }// error path
+        );
+    }
+    this.examinations = lastExaminations;
+
   }
 
 }

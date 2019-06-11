@@ -1,61 +1,32 @@
-<main role="main" class="container">
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="content">
-    <div class="animated fadeIn">
-      <div class="row">
-        <div id="error"></div>
+<div class="row">
+  <div id="error"></div>
+</div>
+<div class="row">
+  <div class="col-8">
+    <div class="row" *ngIf="myPatients.length != 0">
+      <div class="col-6" *ngFor="let pac of myPatients">
+        <app-patient [patient]="pac" [showDetails]="true"></app-patient>
       </div>
-      <div class="row">
-        <div class="col-8">
-          <!--bootstrap card - karta; today steps high score -->
-          <div class="row" *ngIf="myPatients.length != 0">
-            <div class="col-6" *ngFor="let doc of myPatients">
-
-              <app-patient [patient]="doc"></app-patient>
-            </div>
-
-          </div>
-          <div class="row" *ngIf="myPatients.length == 0">
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="col-12">
-
-              <div class="card">
-                <div class="card-header bg-my-secondary-doctor">
-                  Patients
-                </div>
-                <div class="card-body">
-                  <div class="card-text">
-                    You do not have any patients.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!--<app-doctor></app-doctor>-->
-
+    </div>
+    <div *ngIf="myPatients.length == 0">
+      <div class="card">
+        <div class="card-header bg-my-secondary-doctor text-white">
+          Doctors
         </div>
-        <div class="col-4">
-          <button class="btn btn-lg btn-success m-3" (click)="onClick($event)"><span
-            class="fa fa-2x fa-plus"> Add patient</span></button>
-
-          <app-notification-panel></app-notification-panel>
-
+        <div class="card-body">
+          <div class="card-text">
+            You do not have any patients.
+          </div>
         </div>
-
-
       </div>
-
-
     </div>
   </div>
-</main>
+  <div class="col-4">
+    <button class="btn btn-lg btn-success rounded w-100" (click)="onClick($event)"><span
+      class="fa fa-2x fa-plus"> Add patient</span></button>
+    <app-notification-panel></app-notification-panel>
+  </div>
+</div>
 
 
 <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
@@ -64,17 +35,27 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Choose doctor</h4>
+        <h4 class="modal-title">Choose patient</h4>
         <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
         <div class="row" *ngIf="notMyPatients.length != 0">
-          <div class="col-6" *ngFor="let doctor of notMyPatients">
-            <p>{{doctor.firstname}}</p>
-            <p>{{doctor.surname}}</p>
-            <p (click)="addPatient(doctor._id)">{{doctor._id}}</p>
+          <div class="col-6" *ngFor="let patient of notMyPatients">
+            <div class="card" (click)="addPatient(patient._id)">
+              <div class="card-header bg-my-secondary-doctor text-white">
+                {{patient.firstname}} {{patient.surname}}
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  {{patient.email}}
+                  {{patient.address}}
+                  {{patient.city}}
+                  {{patient.state}}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row" *ngIf="notMyPatients.length==0">

@@ -1,7 +1,10 @@
 <p *ngIf="error" class="error">{{error | json}}</p>
 
-<div class="card shadow-lg m-3">
-  <img class="card-img-top" src="assets/doctor.jpg" alt="Card image cap">
+<div class="card shadow-lg">
+  <!--<img class="card-img-top" src="assets/doctor.jpg" alt="Card image cap">-->
+  <img *ngIf="doctor && doctor.image" class="card-img-top" src="assets/uploads/{{doctor.image}}" height="250"
+       alt="Card image cap">
+  <img *ngIf="!doctor || !doctor.image" class="card-img-top" src="assets/doctor.jpg" alt="Card image cap" height="250">
   <div class="card-body">
     <div class="text-center">
 
@@ -107,7 +110,7 @@
             <span [ngClass]="(score > 4 )?'fa fa-star':'fa fa-star-o'"></span>
           </div>
           <div>
-            <span class="glyphicon glyphicon-user"></span>{{numberOfRatins}} total
+            <span class="fa fa-user"></span>{{numberOfRatins}} total
           </div>
         </div>
         <div class="col-xs-12 col-md-6">
@@ -197,8 +200,20 @@
   </div>
   <div class="card-footer">
     <small class="text-muted">
-      <button class="btn btn-primary" (click)="onAddRequestClick()">Request examination</button>
-      <button class="btn btn-primary fa fa-2x fa-trash float-right" (click)="onClick($event)"></button>
+      <!--<button class="btn btn-primary" (click)="onAddRequestClick()">Request examination</button>-->
+      <!--<button class="btn btn-primary fa fa-2x fa-trash float-right" (click)="onClick($event)"></button>-->
+      <div class="row">
+        <div class="col-auto align-self-start">
+          <button class="btn btn-primary" (click)="onAddRequestClick()">Examination</button>
+
+        </div>
+        <div class="col-auto align-self-center" *ngIf="showDetails">
+          <button class="btn btn-primary fa fa-2x fa-info" (click)="navigateToDetail()"></button>
+        </div>
+        <div class="col align-self-end">
+          <button class="btn btn-primary fa fa-2x fa-trash float-right" (click)="onClick($event)"></button>
+        </div>
+      </div>
     </small>
   </div>
 </div>

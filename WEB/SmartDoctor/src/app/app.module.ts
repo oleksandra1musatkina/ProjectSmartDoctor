@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ChartsModule} from 'ng2-charts';
 
 
 import {AppComponent} from './app.component';
@@ -35,6 +36,10 @@ import {DisplayAndSetComponent} from './display-and-set/display-and-set.componen
 import {PatientComponent} from './patient/patient.component';
 import {DlDateTimeDateModule, DlDateTimePickerModule} from 'angular-bootstrap-datetimepicker';
 import {HomeComponent} from './home/home.component';
+import { PatientDetailPageComponent } from './patient-detail-page/patient-detail-page.component';
+import { DetailPageComponent } from './detail-page/detail-page.component';
+import { ExaminationDetailPageComponent } from './examination-detail-page/examination-detail-page.component';
+import { BarchartComponent } from './barchart/barchart.component';
 
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -68,6 +73,10 @@ import {HomeComponent} from './home/home.component';
     DisplayAndSetComponent,
     PatientComponent,
     HomeComponent,
+    PatientDetailPageComponent,
+    DetailPageComponent,
+    ExaminationDetailPageComponent,
+    BarchartComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +85,8 @@ import {HomeComponent} from './home/home.component';
     HttpClientModule,
     DlDateTimeDateModule,
     DlDateTimePickerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
     // FontAwesomeModule
   ],
   providers: [],

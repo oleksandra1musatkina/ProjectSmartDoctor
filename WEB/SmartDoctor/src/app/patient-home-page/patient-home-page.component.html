@@ -1,20 +1,13 @@
-<!--<main role="main" class="container">-->
-<br>
-<br>
-<br>
-<br>
-<!--<div class="content">-->
-<!--<div class="animated fadeIn">-->
 <div class="row">
   <div id="error"></div>
 </div>
 <div class="row h-100">
   <div class="col-lg-4 col-12">
-    <app-pending-examinations></app-pending-examinations>
+    <app-pending-examinations [patient]="patient"></app-pending-examinations>
 
   </div>
   <div class="col-lg-4 col-12">
-    <app-last-examinations></app-last-examinations>
+    <app-last-examinations [patient]="patient"></app-last-examinations>
     <!--<app-ask-fo-online-help></app-ask-fo-online-help>-->
   </div>
   <div class="col-lg-4 col-12">
@@ -24,6 +17,3 @@
 </div>
 
 
-<!--</div>-->
-<!--</div>-->
-<!--</main>-->

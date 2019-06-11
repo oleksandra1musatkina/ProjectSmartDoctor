@@ -1,36 +1,20 @@
-<main role="main" class="container">
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <!--<div class="content">-->
-  <!--<div class="animated fadeIn">-->
-  <div class="row">
-    <div id="error"></div>
+<div class="row">
+  <div id="error"></div>
+</div>
+<div class="row">
+  <div class="col-3">
+    <app-settings-photo></app-settings-photo>
   </div>
-  <div class="row">
-    <div class="col-3">
-      <app-settings-photo></app-settings-photo>
-      <!--<div class="row justify-content-center">-->
-      <!--<img class="border-dark rounded-circle w-75" src="assets/zena.jpg">-->
-      <!--</div>-->
-    </div>
-    <div class="col-6">
-      <app-text-settings
-        [keys]="['surname', 'firstname', 'birdthdate', 'address', 'city', 'state']"></app-text-settings>
-    </div>
-    <div class="col-3">
-      <app-petient-insurence></app-petient-insurence>
-
-      <!--<app-settings-opening-hours></app-settings-opening-hours>-->
-      <!--<app-settings-doctor-insurences></app-settings-doctor-insurences>-->
-    </div>
-
+  <div class="col-6">
+    <app-text-settings
+      [keys]="['surname', 'firstname', 'birdthdate', 'address', 'city', 'state']"></app-text-settings>
+  </div>
+  <div class="col-3">
+    <app-petient-insurence></app-petient-insurence>
 
   </div>
 
 
-  <!--</div>-->
-  <!--</div>-->
-</main>
+</div>
+
+
