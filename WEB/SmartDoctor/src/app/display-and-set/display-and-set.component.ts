@@ -21,6 +21,8 @@ export class DisplayAndSetComponent implements OnInit {
   @Input() inputData: string;
   @Input() key: string;
 
+  editError: string = null;
+
   constructor(private doctorService: DoctorService) {
   }
 
@@ -35,10 +37,30 @@ export class DisplayAndSetComponent implements OnInit {
   }
 
   saveDisplayandsaveData(identifier: {} = null) {
+    this.editError = null;
     // console.log('___key: ' + this.key);
     if (this.inputData == null || this.inputData.length == 0) {
+
       return;
     }
+    if (this.key == 'birdthdate') {
+      let regexp = new RegExp('^\\s*(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2})\\s*$');
+      let test = regexp.test(this.inputData);
+      if (!test) {
+        this.editError = 'wrong date format!';
+        return;
+      }
+    }
+    if (this.key == 'firstname' || this.key == 'surname') {
+      if (this.inputData.length < 2) {
+        this.editError = 'at least two characters needed';
+        return;
+      }
+      this.inputData.toLowerCase();
+      this.inputData = this.inputData.charAt(0).toUpperCase() + this.inputData.slice(1);
+
+    }
+
     this.doctorService.saveData(this.key, this.inputData).subscribe(
       (data: string) => {
         console.log(data);

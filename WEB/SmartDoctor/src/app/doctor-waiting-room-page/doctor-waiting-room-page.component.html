@@ -2,8 +2,8 @@
   <div id="error"></div>
 </div>
 <div class="row h-50">
-  <div class="col-4">
-    <div class="card h-100" *ngIf="ticket">
+  <div class="col-lg-4 col-12">
+    <div class="card h-100 shadow-lg" *ngIf="ticket">
       <div class="card-header bg-my-secondary-doctor text-white">
         Operate tickets
       </div>
@@ -16,12 +16,16 @@
         <p class="card-text">Your ticket system is now closed. You can open it any time</p>
         <button class="btn btn-success" (click)="openTicketSystem()"> Open</button>
       </div>
+      <div class="card-body text-center" *ngIf="(ticket.status!='open'&&ticket.status!='closed')">
+        <p class="card-text">We have problem with ticket system right now. Please reload page or try it later</p>
+        <button class="btn btn-success" (click)="openTicketSystem()"> Open</button>
+      </div>
     </div>
 
 
   </div>
-  <div class="col-4">
-    <div class="card h-100" *ngIf="ticket">
+  <div class="col-lg-4 col-12">
+    <div class="card h-100 shadow-lg" *ngIf="ticket">
       <div class="card-header bg-my-secondary-doctor text-white">
         Ticket status
       </div>
@@ -37,12 +41,16 @@
       <div class="card-body text-center" *ngIf="ticket.status=='closed'">
         <p class="card-text">Ticket status is only available while system is opened</p>
       </div>
+      <div class="card-body text-center" *ngIf="(ticket.status!='open'&&ticket.status!='closed')">
+        <p class="card-text">We have problem with ticket system right now. Please reload page or try it later</p>
+        <button class="btn btn-success" (click)="openTicketSystem()"> Open</button>
+      </div>
     </div>
 
 
   </div>
-  <div class="col-4">
-    <div class="card h-100" *ngIf="ticket">
+  <div class="col-lg-4 col-12">
+    <div class="card h-100 shadow-lg" *ngIf="ticket">
       <div class="card-header bg-my-secondary-doctor text-white">
         Manage patients
       </div>
@@ -55,6 +63,10 @@
       </div>
       <div class="card-body text-center" *ngIf="ticket.status=='closed'">
         <p class="card-text">Managing patients is only available while system is opened</p>
+      </div>
+      <div class="card-body text-center" *ngIf="(ticket.status!='open'&&ticket.status!='closed')">
+        <p class="card-text">We have problem with ticket system right now. Please reload page or try it later</p>
+        <button class="btn btn-success" (click)="openTicketSystem()"> Open</button>
       </div>
     </div>
 

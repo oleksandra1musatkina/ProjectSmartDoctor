@@ -1,8 +1,11 @@
-<div class="card shadow-l h-25">
+<div class="card shadow-lg h-25">
   <div class="card-header bg-my-secondary-patent text-white">
     Actual drugs
   </div>
   <div class="card-body overflow-auto">
+    <div class="card-text" *ngIf="patient.drugs.length == 0">
+      You do not have drugs yet
+    </div>
     <div *ngIf="patient.drugs">
       <ul class="list-group list-group-flush">
         <div *ngFor="let drug of patient.drugs">

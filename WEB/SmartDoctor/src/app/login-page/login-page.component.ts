@@ -44,8 +44,13 @@ export class LoginPageComponent implements OnInit {
 
   patient: Patient;
   doctor: Doctor;
-  error: any;
-  model = new User(18, 'Dr IQ');
+  error: string = null;
+  // model = new User(18, 'Dr IQ');
+  @Input() loginEmail: string = '';
+  loginEmailError: string = null;
+  @Input() loginPassword: string = '';
+  loginPasswordError: string = null;
+
 
   register = false;
   patientRegistration: boolean = true;
@@ -98,18 +103,42 @@ export class LoginPageComponent implements OnInit {
   }
 
   submitPatientRegistration() {
+    this.registerPatientFirstnameError = '';
+    this.registerPatientSurnameError = '';
+    this.registerPatientEmailError = '';
+    this.registerPatientPasswordError = '';
+    this.registerPatientPassword2Error = '';
+    this.registerPatientAddressError = '';
+    this.registerPatientCityError = '';
+    this.registerPatientStateError = '';
     let isError: boolean = false;
     if (this.registerPatientEmail.length == 0) {
-      this.registerPatientFirstnameError = 'You have to enter Email';
+      this.registerPatientEmailError = 'You have to enter Email';
       isError = true;
+    } else {
+      let regexp = new RegExp('(.+)@(.+){2,}\\.(.+){2,}');
+      let test = regexp.test(this.registerPatientEmail);
+      if (!test) {
+        this.registerPatientEmailError = 'wrong email format!';
+        isError = true;
+      }
     }
-    if (this.registerPatientFirstname.length == 0) {
-      this.registerPatientFirstnameError = 'You have to enter Firstname';
+
+    if (this.registerPatientFirstname.length < 2) {
+      this.registerPatientFirstnameError = 'Firstname must have 2 and more characters';
       isError = true;
+    } else {
+      this.registerPatientFirstname.toLowerCase();
+      this.registerPatientFirstname = this.registerPatientFirstname.charAt(0).toUpperCase() + this.registerPatientFirstname.slice(1);
+
     }
-    if (this.registerPatientSurname.length == 0) {
-      this.registerPatientSurnameError = 'You have to enter Lastname';
+    if (this.registerPatientSurname.length < 2) {
+      this.registerPatientSurnameError = 'Surname must have 2 and more characters';
       isError = true;
+    } else {
+      this.registerPatientSurname.toLowerCase();
+      this.registerPatientSurname = this.registerPatientSurname.charAt(0).toUpperCase() + this.registerPatientSurname.slice(1);
+
     }
     if (this.registerPatientAddress.length == 0) {
       this.registerPatientAddressError = 'You have to enter Address';
@@ -123,12 +152,12 @@ export class LoginPageComponent implements OnInit {
       this.registerPatientStateError = 'You have to enter State';
       isError = true;
     }
-    if (this.registerPatientPassword.length == 0) {
-      this.registerPatientPasswordError = 'You have to enter Password';
+    if (this.registerPatientPassword.length < 4) {
+      this.registerPatientPasswordError = 'Password must have 4 anf more characters';
       isError = true;
     } else {
-      if (this.registerPatientPassword2.length == 0) {
-        this.registerPatientPassword2Error = 'You have to enter Password';
+      if (this.registerPatientPassword2.length < 4) {
+        this.registerPatientPassword2Error = 'Password must have 4 anf more characters';
         isError = true;
       }
       if (this.registerPatientPassword != this.registerPatientPassword2) {
@@ -154,18 +183,41 @@ export class LoginPageComponent implements OnInit {
   }
 
   submitDoctorRegistration() {
+    this.registerDoctorFirstnameError = '';
+    this.registerDoctorSurnameError = '';
+    this.registerDoctorEmailError = '';
+    this.registerDoctorPasswordError = '';
+    this.registerDoctorPassword2Error = '';
+    this.registerDoctorAddressError = '';
+    this.registerDoctorCityError = '';
+    this.registerDoctorStateError = '';
     let isError: boolean = false;
     if (this.registerDoctorEmail.length == 0) {
-      this.registerDoctorFirstnameError = 'You have to enter Email';
+      this.registerDoctorEmailError = 'You have to enter Email';
       isError = true;
+    } else {
+      let regexp = new RegExp('(.+)@(.+){2,}\\.(.+){2,}');
+      let test = regexp.test(this.registerDoctorEmail);
+      if (!test) {
+        this.registerDoctorEmailError = 'wrong email format!';
+        isError = true;
+      }
     }
-    if (this.registerDoctorFirstname.length == 0) {
-      this.registerDoctorFirstnameError = 'You have to enter Firstname';
+    if (this.registerDoctorFirstname.length < 2) {
+      this.registerDoctorFirstnameError = 'Firstname must have 2 and more characters';
       isError = true;
+    } else {
+      this.registerDoctorFirstname.toLowerCase();
+      this.registerDoctorFirstname = this.registerDoctorFirstname.charAt(0).toUpperCase() + this.registerDoctorFirstname.slice(1);
+
     }
-    if (this.registerDoctorSurname.length == 0) {
-      this.registerDoctorSurnameError = 'You have to enter Lastname';
+    if (this.registerDoctorSurname.length < 2) {
+      this.registerDoctorSurnameError = 'Surname must have 2 and more characters';
       isError = true;
+    } else {
+      this.registerDoctorSurname.toLowerCase();
+      this.registerDoctorSurname = this.registerDoctorSurname.charAt(0).toUpperCase() + this.registerDoctorSurname.slice(1);
+
     }
     if (this.registerDoctorAddress.length == 0) {
       this.registerDoctorAddressError = 'You have to enter Address';
@@ -179,12 +231,12 @@ export class LoginPageComponent implements OnInit {
       this.registerDoctorStateError = 'You have to enter State';
       isError = true;
     }
-    if (this.registerDoctorPassword.length == 0) {
-      this.registerDoctorPasswordError = 'You have to enter Password';
+    if (this.registerDoctorPassword.length < 4) {
+      this.registerDoctorPasswordError = 'Password must have 4 and more characters';
       isError = true;
     } else {
-      if (this.registerDoctorPassword2.length == 0) {
-        this.registerDoctorPassword2Error = 'You have to enter Password';
+      if (this.registerDoctorPassword2.length < 4) {
+        this.registerDoctorPassword2Error = 'Password must have 4 and more characters';
         isError = true;
       }
       if (this.registerDoctorPassword != this.registerDoctorPassword2) {
@@ -203,23 +255,17 @@ export class LoginPageComponent implements OnInit {
             this.registerMessage = data['registerMessage'];
             this.toggleFlip();
           }
-        },
-        error => console.log(JSON.stringify(error))
+        }, error => {
+          this.registerError = 'unknown error try again later';
+          error => console.log(JSON.stringify(error));
+
+        }
       );
     }
   }
 
   registerDoctor() {
     this.patientRegistration = false;
-  }
-
-  newHero() {
-    this.model = new User(42, '');
-  }
-
-  // TODO: Remove this when we're done
-  get diagnostic() {
-    return JSON.stringify(this.model);
   }
 
   ngOnInit(): void {
@@ -232,6 +278,21 @@ export class LoginPageComponent implements OnInit {
   }
 
   sendLoginRequest(username: string, password: string) {
+    console.log('username: ' + username);
+    console.log('password: ' + password);
+    this.loginEmailError = null;
+    this.loginPasswordError = null;
+    if (!username || username.length == 0) {
+      this.loginEmailError = 'Email is required!';
+
+    }
+    if (!password || password.length == 0) {
+      this.loginPasswordError = 'Password is required!';
+      console.log('nie je heslo');
+    }
+    if (this.loginPasswordError || this.loginEmailError) {
+      return;
+    }
     this.loginPageService.getLoginDataViaPost(username, password)
       .subscribe(
         (data: {}) => {
@@ -267,7 +328,11 @@ export class LoginPageComponent implements OnInit {
 
 
         }, // success path
-        error => this.error = error// error path
+
+        error => {
+          this.error = 'Wrong credentials!';
+          console.log('chyba');
+        }// error path
       );
 
     console.log('login data: ' + this.patient);

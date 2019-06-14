@@ -499,7 +499,7 @@ export class DoctorService {
       sex: '---',
       insuranceNumber: '',
       alergies: [],
-      drugs: [{name: 'aspirin', times: ['7:30', '10:50']}],
+      drugs: [],
       badHabits: [],
       doctors: [],
       rating: [],
@@ -524,7 +524,39 @@ export class DoctorService {
       city: city,
       state: state,
       patients: [],
-      insurances: []
+      insurances: [],
+      opening: {
+        'mon': {
+          'open': '07:30',
+          'close': '15:30'
+        },
+        'tue': {
+          'open': '07:30',
+          'close': '15:30'
+        },
+        'wed': {
+          'open': '07:30',
+          'close': '15:30'
+        },
+        'thu': {
+          'open': '07:30',
+          'close': '15:30'
+        },
+        'fri': {
+          'open': '07:30',
+          'close': '15:30'
+        },
+        'sat': {
+          'open': '08:30',
+          'close': '11:30'
+        },
+        'sun': {
+          'open': '07:30',
+          'close': '15:30'
+        }
+      },
+      'maxpatients': 20,
+      'estimatedpatienttime': 15
     };
 
     const registerObservable = this.http.post<string>(this.url + 'registerdoctor', {

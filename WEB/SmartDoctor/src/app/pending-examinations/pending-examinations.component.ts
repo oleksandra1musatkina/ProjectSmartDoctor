@@ -35,6 +35,12 @@ export class PendingExaminationsComponent implements OnInit {
 
   getPendingExaminations() {
     let examinations: Examination[] = this.patient.examintaions;
+    if (this.patient.examintaions) {
+      examinations = this.patient.examintaions;
+    } else {
+      examinations = [];
+    }
+
     // console.log('pocet vysetreni: ' + examinations.length);
     let lastExaminations: Examination[] = [];
 

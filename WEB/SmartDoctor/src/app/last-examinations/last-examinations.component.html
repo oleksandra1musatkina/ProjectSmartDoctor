@@ -1,9 +1,31 @@
-<div class="card  rounded shadow-lg h-25">
+<div class="card  shadow-lg h-25">
   <div
     [ngClass]="(isPatient == true )?'card-header bg-my-secondary-patent text-white':'card-header bg-my-secondary-doctor text-white'">
     Last examinations
   </div>
   <div class="card-body overflow-auto">
+    <div class="card-text" *ngIf="examinations.length == 0">
+      You do not have examinations yet!
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let nex of noExam">
+          <div class="row">
+            <div class="col">
+              You do not have examinations yet!
+            </div>
+          </div>
+
+        </li>
+      </ul>
+    </div>
     <div *ngIf="examinations">
 
       <ul class="list-group list-group-flush">
@@ -23,7 +45,7 @@
             <div class="col-3 align-self-end align-top">
               <button
                 [ngClass]="(isPatient == true )?'btn btn-primary fa fa-2x fa-sticky-note-o float-right':'btn btn-success fa fa-2x fa-sticky-note-o float-right'"
-              (click)="openExaminationDetail(exam)"
+                (click)="openExaminationDetail(exam)"
               >
               </button>
 

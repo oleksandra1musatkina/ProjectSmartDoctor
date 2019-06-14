@@ -2,9 +2,9 @@
   <div id="error"></div>
 </div>
 <div class="row">
-  <div class="col-8">
+  <div class="col-lg-8 col-12">
     <div class="row" *ngIf="myTickets.length != 0">
-      <div class="col-6" *ngFor="let ticket of myTickets">
+      <div class="col-lg-6 col-12" *ngFor="let ticket of myTickets">
         <app-petient-waitingroom-info [ticket]="ticket"></app-petient-waitingroom-info>
       </div>
 
@@ -16,7 +16,7 @@
       <br>
       <div class="col-12">
 
-        <div class="card">
+        <div class="card shadow-lg">
           <div class="card-header bg-my-secondary-patent text-white">
             Tickets
           </div>
@@ -32,9 +32,9 @@
     <!--<app-doctor></app-doctor>-->
 
   </div>
-  <div class="col-4">
-    <button class="btn btn-lg btn-primary rounded w-100" (click)="onClick()"><span
-      class="fa fa-2x fa-plus"> Request ticket</span></button>
+  <div class="col-lg-4 col-12">
+    <button class="btn btn-primary rounded shadow-lg w-100" (click)="onClick()"><span
+      class="fa fa-plus"> Request ticket</span></button>
 
     <!--<app-notification-panel></app-notification-panel>-->
 

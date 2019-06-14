@@ -16,6 +16,7 @@ export class LastExaminationsComponent implements OnInit {
   @Input() doctorForExaminations: Doctor = null;
   isPatient: boolean = false;
   examinations;
+  noExam = [{}, {}, {}, {}, {}, {}];
 
   constructor(private doctorService: DoctorService, private dataService: DataService, private router: Router) {
   }
@@ -47,7 +48,14 @@ export class LastExaminationsComponent implements OnInit {
 
   getLastExaminations() {
     console.log('!!!patient: ' + JSON.stringify(this.patient));
-    let examinations: Examination[] = this.patient.examintaions;
+    let examinations: Examination[];
+    if (this.patient.examintaions) {
+
+      examinations = this.patient.examintaions;
+    } else {
+      examinations = [];
+    }
+
     // console.log('pocet vysetreni: ' + examinations.length);
     let lastExaminations: {}[] = [];
 

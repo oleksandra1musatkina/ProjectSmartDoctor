@@ -2,14 +2,14 @@
   <div id="error"></div>
 </div>
 <div class="row">
-  <div class="col-8">
+  <div class="col-lg-8 col-12">
     <div class="row" *ngIf="myPatients.length != 0">
-      <div class="col-6" *ngFor="let pac of myPatients">
+      <div class="col-lg-6 col-12" *ngFor="let pac of myPatients">
         <app-patient [patient]="pac" [showDetails]="true"></app-patient>
       </div>
     </div>
     <div *ngIf="myPatients.length == 0">
-      <div class="card">
+      <div class="card shadow-lg">
         <div class="card-header bg-my-secondary-doctor text-white">
           Doctors
         </div>
@@ -21,9 +21,9 @@
       </div>
     </div>
   </div>
-  <div class="col-4">
-    <button class="btn btn-lg btn-success rounded w-100" (click)="onClick($event)"><span
-      class="fa fa-2x fa-plus"> Add patient</span></button>
+  <div class="col-lg-4 col-12">
+    <button class="btn btn-success rounded w-100 shadow-lg" (click)="onClick($event)"><span
+      class="fa fa-plus"> Add patient</span></button>
     <app-notification-panel></app-notification-panel>
   </div>
 </div>

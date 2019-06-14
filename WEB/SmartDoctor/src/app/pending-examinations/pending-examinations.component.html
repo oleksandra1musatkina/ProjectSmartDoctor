@@ -1,10 +1,13 @@
-<div class="card  rounded h-25">
+<div class="card  shadow-lg h-25">
   <div
     [ngClass]="(isPatient == true )?'card-header bg-my-secondary-patent text-white':'card-header bg-my-secondary-doctor text-white'">
 
     Pending examinations
   </div>
   <div class="card-body overflow-auto">
+    <div class="card-text" *ngIf="examinations.length == 0">
+      You do not have examinations yet!
+    </div>
     <div *ngIf="patient.drugs">
       <!--<div *ngFor="let drug of doctor.drugs">-->
       <!--{{drug.name}}-->

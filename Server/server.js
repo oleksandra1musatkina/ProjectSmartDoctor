@@ -1572,7 +1572,7 @@ app.post('/requestticket', (req, res, callbackFunction) => {
                                 }
                             }
                             if (!hasThisPatient) {
-                                dbo.collection("tickets").update({}, {
+                                dbo.collection("tickets").update({doctor: doctor}, {
                                     $addToSet: {patients: {patient: patient, number: result.lastnumber + 1}},
                                     // $set: {lastnumber: result.lastnumber + 1}
                                 }, function (err, result) {
@@ -1713,8 +1713,8 @@ app.post('/registerdoctor', (req, res, callbackFunction) => {
         res.status(status).send(value);
     };
 
-    let patient = req.body.patient;
-    if (!patient) {
+    let doctor = req.body.doctor;
+    if (!doctor) {
         callbackFunction(401, "wrong conditionals");
     } else {
 
@@ -1722,14 +1722,14 @@ app.post('/registerdoctor', (req, res, callbackFunction) => {
         mongo.connect(url, function (err, db) {
             if (err) throw err;
             let dbo = db.db("SmartDoctor");
-            dbo.collection("doctors").findOne({email: patient.email}, function (err, result) {
+            dbo.collection("doctors").findOne({email: doctor.email}, function (err, result) {
                 if (err) throw err;
                 if (result) {
 
                     console.log(result);
                     callbackFunction(200, {registerError: "Email already used!"});
                 } else {
-                    dbo.collection("doctors").insertOne(patient, function (err, result) {
+                    dbo.collection("doctors").insertOne(doctor, function (err, result) {
                         if (err) throw err;
                         if (result) {
                             console.log(result);
